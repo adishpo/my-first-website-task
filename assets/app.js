@@ -59,9 +59,9 @@
     if (!el) return;
     const newest = recipes[0];
     el.textContent =
-      "✿ ברוכים הבאים לספר המתכונים של עדי ✿ " +
-      (newest ? `מתכון חדש: ${newest.title} ✿ ` : "") +
-      'לא יודעים מה להכין? נסו את כפתור "מתכון אקראי" ✿';
+      "🍓 ברוכים הבאים לספר המתכונים של עדי 🧁 " +
+      (newest ? `מתכון חדש: ${newest.title} 🍋 ` : "") +
+      'לא יודעים מה להכין? נסו את כפתור "מתכון אקראי" 🍒';
   }
 
   function renderWebring(current) {
@@ -76,7 +76,7 @@
 
   function cursorTrail() {
     if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const chars = ["✦", "☺", "♥", "✧"];
+    const chars = ["✦", "♥", "✧", "🍓", "🍋", "🧁", "🍒"];
     const colors = ["#ff5fc8", "#a48ff0", "#3fc4a3", "#e6d43a", "#7fc4ff"];
     let last = 0;
     addEventListener("mousemove", (e) => {
@@ -92,6 +92,65 @@
       setTimeout(() => s.remove(), 800);
     });
   }
+
+  /* ---------- food decorations ---------- */
+  const INK = 'stroke="#3d3566" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+  const FOOD = {
+    cupcake: `<path d="M24 56 L76 56 L68 92 L32 92 Z" fill="#ffb3e3" ${INK}/>
+      <path d="M38 57 L41 91 M50 57 L50 91 M62 57 L59 91" fill="none" stroke="#3d3566" stroke-width="2"/>
+      <path d="M18 58 C13 46 24 39 30 42 C28 30 42 26 48 32 C51 20 67 22 66 34 C77 32 85 45 80 58 Z" fill="#c9b8ff" ${INK}/>
+      <path d="M34 48 l5 -2 M50 41 l3 4 M63 47 l5 -1 M44 53 l-4 -2 M70 53 l3 -3" stroke="#fff27a" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M56 16 Q58 7 67 4" fill="none" ${INK}/>
+      <circle cx="56" cy="22" r="7" fill="#ff5f7e" ${INK}/>`,
+    strawberry: `<path d="M50 92 C30 80 14 60 18 42 C22 28 38 26 50 30 C62 26 78 28 82 42 C86 60 70 80 50 92 Z" fill="#ff6f91" ${INK}/>
+      <g fill="#fff27a"><ellipse cx="36" cy="46" rx="2.5" ry="3.5"/><ellipse cx="50" cy="44" rx="2.5" ry="3.5"/><ellipse cx="64" cy="46" rx="2.5" ry="3.5"/><ellipse cx="42" cy="60" rx="2.5" ry="3.5"/><ellipse cx="58" cy="60" rx="2.5" ry="3.5"/><ellipse cx="50" cy="75" rx="2.5" ry="3.5"/><ellipse cx="29" cy="57" rx="2.5" ry="3.5"/><ellipse cx="71" cy="57" rx="2.5" ry="3.5"/></g>
+      <path d="M30 32 L40 18 L46 28 L50 11 L54 28 L60 18 L70 32 C62 37 38 37 30 32 Z" fill="#6fe3c6" ${INK}/>`,
+    egg: `<path d="M20 52 C14 30 34 16 52 20 C70 14 90 30 84 50 C92 70 74 88 54 82 C36 92 12 78 20 52 Z" fill="#fff" ${INK}/>
+      <circle cx="52" cy="50" r="18" fill="#fff27a" ${INK}/>
+      <ellipse cx="46" cy="47" rx="2.2" ry="4" fill="#3d3566"/><ellipse cx="58" cy="47" rx="2.2" ry="4" fill="#3d3566"/>
+      <path d="M45 55 Q52 62 59 55" fill="none" ${INK}/>`,
+    lemon: `<circle cx="50" cy="50" r="42" fill="#fff27a" ${INK}/>
+      <circle cx="50" cy="50" r="33" fill="#ffe94d" stroke="#e6d43a" stroke-width="2"/>
+      <path d="M50 18 L50 82 M18 50 L82 50 M27 27 L73 73 M73 27 L27 73" stroke="#fffbd0" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="4" fill="#fffbd0"/>`,
+    donut: `<circle cx="50" cy="50" r="40" fill="#f2c48d" ${INK}/>
+      <path d="M50 15 C66 12 80 22 84 36 C89 50 81 58 84 66 C78 82 62 88 50 84 C36 90 22 82 18 68 C12 56 18 46 16 36 C22 22 36 15 50 15 Z" fill="#ffb3e3" ${INK}/>
+      <path d="M30 34 l5 3 M62 26 l4 4 M71 52 l-2 5 M36 67 l5 -2 M57 72 l4 2 M26 50 l1 5 M46 26 l5 -1" stroke="#6fe3c6" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M40 22 l-1 5 M74 40 l4 1 M66 64 l3 3 M24 60 l4 -2" stroke="#fff27a" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="11" fill="#fff" ${INK}/>`,
+    fish: `<path d="M72 50 L92 33 L88 50 L92 67 Z" fill="#c9b8ff" ${INK}/>
+      <path d="M12 50 C26 27 58 26 76 50 C58 74 26 73 12 50 Z" fill="#a9dcff" ${INK}/>
+      <path d="M46 39 Q53 50 46 61 M57 41 Q63 50 57 59" fill="none" stroke="#3d3566" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="28" cy="46" r="4" fill="#3d3566"/><circle cx="29.3" cy="44.7" r="1.3" fill="#fff"/>
+      <path d="M19 54 Q23 57 28 55" fill="none" stroke="#3d3566" stroke-width="2.5" stroke-linecap="round"/>`,
+    cherry: `<path d="M34 58 Q44 30 62 14 M64 62 Q61 36 62 14" fill="none" ${INK}/>
+      <path d="M62 14 C72 5 86 9 88 18 C78 24 68 22 62 14 Z" fill="#6fe3c6" ${INK}/>
+      <circle cx="34" cy="70" r="14" fill="#ff5f7e" ${INK}/><circle cx="64" cy="74" r="14" fill="#ff5f7e" ${INK}/>
+      <ellipse cx="29" cy="65" rx="3" ry="4.5" fill="#fff" opacity=".8"/><ellipse cx="59" cy="69" rx="3" ry="4.5" fill="#fff" opacity=".8"/>`
+  };
+  const sticker = (name, cls) =>
+    `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true" focusable="false">${FOOD[name]}</svg>`;
+
+  function foodDecor() {
+    const desk = $(".desktop");
+    if (desk) {
+      desk.insertAdjacentHTML("afterbegin",
+        ["cupcake", "strawberry", "egg", "lemon", "donut", "fish", "cherry"]
+          .map((f) => sticker(f, "food f-" + f)).join(""));
+    }
+    const h1 = $(".site-header h1 a");
+    if (h1) {
+      h1.insertAdjacentHTML("afterbegin", sticker("strawberry", "h1-food"));
+      h1.insertAdjacentHTML("beforeend", sticker("cupcake", "h1-food"));
+    }
+  }
+
+  const CAT_ICONS = {
+    "עיקריות": "🍲", "מנות עיקריות": "🍲", "קינוחים": "🧁", "עוגות": "🍰", "עוגיות": "🍪",
+    "סלטים": "🥗", "מרקים": "🥣", "מאפים": "🥐", "לחמים": "🍞", "תוספות": "🍚",
+    "ארוחת בוקר": "🍳", "דגים": "🐟", "פסטה": "🍝", "שתייה": "🥤", "משקאות": "🥤"
+  };
+  const catIcon = (cat) => CAT_ICONS[cat] || "🍴";
 
   function favButton(r) {
     const on = isFav(r.id);
@@ -148,7 +207,7 @@
         const time = r.totalMinutes ? ` · ⏱ ${r.totalMinutes} דק׳` : "";
         return `<article class="win card${style}">
           ${r.id === newestId ? '<div class="badge-new">חדש!</div>' : ""}
-          <div class="titlebar ${titleColors[i % 3]}"><span class="t">${esc(r.category)}</span><div class="ctl" aria-hidden="true"><span>✕</span></div></div>
+          <div class="titlebar ${titleColors[i % 3]}"><span class="t">${catIcon(r.category)} ${esc(r.category)}</span><div class="ctl" aria-hidden="true"><span>✕</span></div></div>
           <div class="content">
             <h3><a href="${recipeUrl(r)}">${esc(r.title)}</a></h3>
             <small>${esc(r.category)}${time}</small>
@@ -209,7 +268,7 @@
     const meta = [
       r.prepTime && `<span>⏱ הכנה: ${esc(r.prepTime)}</span>`,
       r.cookTime && `<span>🔥 בישול/אפייה: ${esc(r.cookTime)}</span>`,
-      `<a href="index.html?cat=${encodeURIComponent(r.category)}">📂 ${esc(r.category)}</a>`
+      `<a href="index.html?cat=${encodeURIComponent(r.category)}">${catIcon(r.category)} ${esc(r.category)}</a>`
     ].filter(Boolean).join("");
 
     const fav = isFav(r.id);
@@ -225,12 +284,12 @@
         </div>
         <div class="recipe-body">
           <section class="panel">
-            <h4>מצרכים</h4>
+            <h4>🥕 מצרכים</h4>
             ${ingredients}
             <button class="btn reset" id="reset" type="button">↺ ניקוי סימונים</button>
           </section>
           <section class="panel steps">
-            <h4>אופן ההכנה</h4>
+            <h4>🥄 אופן ההכנה</h4>
             <ol>${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
           </section>
         </div>
@@ -286,6 +345,7 @@
     });
   }
 
+  foodDecor();
   renderMarquee();
   cursorTrail();
   const page = document.body.dataset.page;

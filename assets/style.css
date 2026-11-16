@@ -35,7 +35,7 @@ button { font-family: inherit; }
 .page-title { text-align: center; color: var(--ink); letter-spacing: 3px; margin: 18px 0 0; font-size: .9em; }
 
 .desktop {
-  position: relative; max-width: 980px; margin: 18px auto 30px; padding: 30px 22px 10px 34px;
+  position: relative; max-width: 980px; margin: 18px auto 30px; padding: 30px 22px 30px 34px;
   background: repeating-conic-gradient(#f3eeff 0 25%, #ffffff 0 50%) 0 0 / 32px 32px;
   border: var(--line);
   box-shadow: 6px 6px 0 var(--ink);
@@ -50,6 +50,26 @@ button { font-family: inherit; }
 .star { position: absolute; z-index: 0; pointer-events: none; fill: var(--sun); stroke: var(--ink); stroke-width: 1.5px; }
 .star.t1 { width: 38px; top: 14px; right: 6%; }
 .star.t2 { width: 26px; top: 420px; left: 4%; fill: var(--pink); }
+
+/* food stickers */
+.food { position: absolute; z-index: 0; pointer-events: none; height: auto; filter: drop-shadow(3px 3px 0 rgba(61, 53, 102, .22)); }
+.f-cupcake    { width: 84px; top: -12px; right: 22%; transform: rotate(10deg); }
+.f-cherry     { width: 60px; top: 6px; left: 9%; transform: rotate(-8deg); }
+.f-strawberry { width: 70px; top: 200px; left: -24px; transform: rotate(-18deg); }
+.f-egg        { width: 96px; top: 52%; right: -36px; transform: rotate(14deg); }
+.f-lemon      { width: 66px; top: 66%; left: -24px; transform: rotate(20deg); }
+.f-donut      { width: 90px; bottom: 34px; right: -28px; transform: rotate(-10deg); }
+.f-fish       { width: 96px; bottom: 18px; left: 16%; transform: rotate(-6deg); }
+.h1-food { width: .85em; height: .85em; vertical-align: -.08em; margin: 0 .2em; }
+
+/* gingham tablecloth edge */
+.desktop::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 16px; z-index: 0;
+  border-top: var(--line);
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 95, 200, .55) 0 8px, transparent 8px 16px),
+    repeating-linear-gradient(0deg, rgba(255, 95, 200, .55) 0 8px, #fff 8px 16px);
+}
 
 /* windows */
 .win {
@@ -204,6 +224,9 @@ nav.menu a .count { font-size: .75em; opacity: .7; }
   .site-header.compact h1 { font-size: 1.5em; }
   .smiley.s1 { width: 80px; top: -20px; left: 4%; }
   .smiley.s2, .smiley.s3, .star.t2 { display: none; }
+  .f-strawberry, .f-egg, .f-lemon, .f-donut, .f-fish { display: none; }
+  .f-cupcake { width: 60px; top: -8px; right: 8%; }
+  .f-cherry { width: 44px; top: 2px; left: auto; right: 30%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -214,6 +237,7 @@ nav.menu a .count { font-size: .75em; opacity: .7; }
 @media print {
   body { background: #fff; }
   .desktop { border: none; box-shadow: none; background: none; padding: 0; }
-  .smiley, .star, .marquee, .site-header, .site-footer, .recipe-actions, .page-title, .ctl, .reset { display: none !important; }
+  .desktop::after { display: none; }
+  .smiley, .star, .food, .h1-food, .marquee, .site-header, .site-footer, .recipe-actions, .page-title, .ctl, .reset { display: none !important; }
   .win, .win.stack { box-shadow: none; }
 }
