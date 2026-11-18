@@ -39,6 +39,73 @@
     location.href = recipeUrl(list[Math.floor(Math.random() * list.length)]);
   }
 
+  /* ---------- cartoon mascots (original drawings, 120x140) ---------- */
+  const INK = "#3b2e2c";
+  const S = `stroke="${INK}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"`;
+  const limb = (x1, y1, x2, y2, bend) =>
+    `<path d="M${x1} ${y1} Q${(x1 + x2) / 2 + bend} ${(y1 + y2) / 2} ${x2} ${y2}" fill="none" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>`;
+  const glove = (x, y) => `<circle cx="${x + 4}" cy="${y - 4}" r="3.6" fill="#fff" ${S}/><circle cx="${x}" cy="${y}" r="7.5" fill="#fff" ${S}/>`;
+  const shoe = (x, y) =>
+    `<ellipse cx="${x}" cy="${y}" rx="11" ry="6.5" fill="#e8572a" ${S}/><path d="M${x - 8} ${y + 2.5} H${x + 8}" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>`;
+  const face = (cx, cy) => `
+    <ellipse cx="${cx - 9}" cy="${cy - 4}" rx="6.5" ry="8" fill="#fff" ${S}/>
+    <ellipse cx="${cx + 9}" cy="${cy - 4}" rx="6.5" ry="8" fill="#fff" ${S}/>
+    <circle cx="${cx - 7}" cy="${cy - 2}" r="3.2" fill="${INK}"/><circle cx="${cx + 11}" cy="${cy - 2}" r="3.2" fill="${INK}"/>
+    <path d="M${cx - 16} ${cy - 15} L${cx - 4} ${cy - 12} M${cx + 4} ${cy - 12} L${cx + 16} ${cy - 15}" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="${cx - 18}" cy="${cy + 7}" r="4" fill="#ff7a5c" opacity=".55"/><circle cx="${cx + 18}" cy="${cy + 7}" r="4" fill="#ff7a5c" opacity=".55"/>
+    <path d="M${cx - 11} ${cy + 7} Q${cx} ${cy + 23} ${cx + 11} ${cy + 7} Z" fill="${INK}" ${S}/>
+    <path d="M${cx - 5} ${cy + 14} Q${cx} ${cy + 19} ${cx + 5} ${cy + 14} Q${cx} ${cy + 11} ${cx - 5} ${cy + 14} Z" fill="#ff7a8a"/>`;
+
+  const MASCOTS = {
+    tomato:
+      limb(50, 94, 45, 120, -4) + limb(70, 94, 77, 120, 4) + shoe(43, 124) + shoe(80, 124) +
+      limb(30, 62, 13, 40, -6) + limb(90, 70, 107, 86, 6) +
+      `<circle cx="60" cy="64" r="34" fill="#ec4b2f" ${S}/>
+       <ellipse cx="42" cy="46" rx="7" ry="4" fill="#fff" opacity=".55" transform="rotate(-35 42 46)"/>
+       <path d="M60 33 C52 31 46 27 43 24 C51 23 56 25 60 29 C60 22 62 17 66 15 C67 21 65 26 62 29 C66 26 72 24 79 25 C74 29 68 32 60 33 Z" fill="#7cb85a" ${S}/>` +
+      face(60, 66) + glove(13, 38) + glove(107, 88),
+    egg:
+      limb(50, 96, 45, 120, -3) + limb(70, 96, 77, 120, 3) + shoe(43, 124) + shoe(80, 124) +
+      limb(27, 72, 11, 88, -4) + limb(92, 58, 108, 40, 6) +
+      `<path d="M60 30 C84 28 98 46 94 66 C100 88 80 100 60 97 C38 102 20 88 24 68 C18 46 36 30 60 30 Z" fill="#fffaf0" ${S}/>
+       <ellipse cx="36" cy="46" rx="6" ry="3.5" fill="#e9dcc0" transform="rotate(-40 36 46)"/>
+       <circle cx="60" cy="64" r="23" fill="#f4b83a" ${S}/>` +
+      face(60, 66) + glove(10, 90) + glove(108, 38),
+    cupcake:
+      limb(50, 108, 45, 122, -3) + limb(70, 108, 77, 122, 3) + shoe(43, 126) + shoe(80, 126) +
+      limb(33, 92, 14, 106, -4) + limb(87, 90, 106, 70, 5) +
+      `<path d="M30 74 L90 74 L82 110 L38 110 Z" fill="#f4b83a" ${S}/>
+       <path d="M45 77 L48 108 M60 77 V108 M75 77 L72 108" stroke="${INK}" stroke-width="2.5" opacity=".45"/>
+       <path d="M24 76 C18 62 30 52 38 54 C36 40 50 34 58 40 C62 28 80 30 80 44 C92 42 100 56 96 76 Z" fill="#ffc2d6" ${S}/>
+       <path d="M38 64 l5 -2 M50 49 l3 4 M72 50 l5 1 M85 62 l-2 4 M30 68 l4 2 M64 60 l4 -2" stroke="#8cc3ea" stroke-width="3.5" stroke-linecap="round"/>
+       <path d="M62 24 Q64 14 73 11" fill="none" ${S}/>
+       <circle cx="62" cy="30" r="7" fill="#e23b2e" ${S}/>` +
+      face(60, 90) + glove(13, 108) + glove(107, 67)
+  };
+  const MASCOT_NAMES = Object.keys(MASCOTS);
+  const mascot = (name, cls) =>
+    `<svg class="${cls}" viewBox="0 0 120 140" aria-hidden="true" focusable="false">${MASCOTS[name]}</svg>`;
+
+  function decorate() {
+    const head = $(".masthead");
+    if (head) head.insertAdjacentHTML("beforeend", mascot("tomato", "mascot m-left") + mascot("egg", "mascot m-right"));
+    const pic = $("#hero-pic");
+    if (pic) pic.innerHTML = mascot("cupcake", "");
+  }
+
+  function startClock() {
+    const el = $("#clock");
+    if (!el) return;
+    const tick = () => {
+      const d = new Date();
+      const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+      const date = d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }).toUpperCase();
+      el.innerHTML = `${time}<br>${date}`;
+    };
+    tick();
+    setInterval(tick, 30000);
+  }
+
   function renderMenu(active) {
     const nav = $("#menu");
     if (!nav) return;
@@ -54,108 +121,23 @@
       link(FAVS, "♥ מועדפים");
   }
 
-  function renderMarquee() {
-    const el = $("#marquee span");
-    if (!el) return;
-    const newest = recipes[0];
-    el.textContent =
-      "🍓 ברוכים הבאים לספר המתכונים של עדי 🧁 " +
-      (newest ? `מתכון חדש: ${newest.title} 🍋 ` : "") +
-      'לא יודעים מה להכין? נסו את כפתור "מתכון אקראי" 🍒';
+  function renderPrevNext(current) {
+    const el = $("#prev-next");
+    if (!el || !current || recipes.length < 2) return;
+    const i = recipes.findIndex((r) => r.id === current.id);
+    const prev = recipes[(i - 1 + recipes.length) % recipes.length];
+    const next = recipes[(i + 1) % recipes.length];
+    el.innerHTML =
+      `<a class="pill-btn small" href="${recipeUrl(prev)}">→ המתכון הקודם</a>` +
+      `<a class="pill-btn small" href="${recipeUrl(next)}">המתכון הבא ←</a>`;
   }
-
-  function renderWebring(current) {
-    const el = $("#webring");
-    if (!el || !recipes.length) return;
-    let prev, next;
-    const i = current ? recipes.findIndex((r) => r.id === current.id) : -1;
-    if (i === -1) { prev = recipes[recipes.length - 1]; next = recipes[0]; }
-    else { prev = recipes[(i - 1 + recipes.length) % recipes.length]; next = recipes[(i + 1) % recipes.length]; }
-    el.innerHTML = `« <a href="${recipeUrl(prev)}">הקודם</a> | ☺ טבעת המתכונים ☺ | <a href="${recipeUrl(next)}">הבא</a> »`;
-  }
-
-  function cursorTrail() {
-    if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const chars = ["✦", "♥", "✧", "🍓", "🍋", "🧁", "🍒"];
-    const colors = ["#ff5fc8", "#a48ff0", "#3fc4a3", "#e6d43a", "#7fc4ff"];
-    let last = 0;
-    addEventListener("mousemove", (e) => {
-      if (Date.now() - last < 45) return;
-      last = Date.now();
-      const s = document.createElement("div");
-      s.className = "sparkle";
-      s.textContent = chars[Math.floor(Math.random() * chars.length)];
-      s.style.left = e.clientX + "px";
-      s.style.top = e.clientY + "px";
-      s.style.color = colors[Math.floor(Math.random() * colors.length)];
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 800);
-    });
-  }
-
-  /* ---------- food decorations ---------- */
-  const INK = 'stroke="#3d3566" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
-  const FOOD = {
-    cupcake: `<path d="M24 56 L76 56 L68 92 L32 92 Z" fill="#ffb3e3" ${INK}/>
-      <path d="M38 57 L41 91 M50 57 L50 91 M62 57 L59 91" fill="none" stroke="#3d3566" stroke-width="2"/>
-      <path d="M18 58 C13 46 24 39 30 42 C28 30 42 26 48 32 C51 20 67 22 66 34 C77 32 85 45 80 58 Z" fill="#c9b8ff" ${INK}/>
-      <path d="M34 48 l5 -2 M50 41 l3 4 M63 47 l5 -1 M44 53 l-4 -2 M70 53 l3 -3" stroke="#fff27a" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M56 16 Q58 7 67 4" fill="none" ${INK}/>
-      <circle cx="56" cy="22" r="7" fill="#ff5f7e" ${INK}/>`,
-    strawberry: `<path d="M50 92 C30 80 14 60 18 42 C22 28 38 26 50 30 C62 26 78 28 82 42 C86 60 70 80 50 92 Z" fill="#ff6f91" ${INK}/>
-      <g fill="#fff27a"><ellipse cx="36" cy="46" rx="2.5" ry="3.5"/><ellipse cx="50" cy="44" rx="2.5" ry="3.5"/><ellipse cx="64" cy="46" rx="2.5" ry="3.5"/><ellipse cx="42" cy="60" rx="2.5" ry="3.5"/><ellipse cx="58" cy="60" rx="2.5" ry="3.5"/><ellipse cx="50" cy="75" rx="2.5" ry="3.5"/><ellipse cx="29" cy="57" rx="2.5" ry="3.5"/><ellipse cx="71" cy="57" rx="2.5" ry="3.5"/></g>
-      <path d="M30 32 L40 18 L46 28 L50 11 L54 28 L60 18 L70 32 C62 37 38 37 30 32 Z" fill="#6fe3c6" ${INK}/>`,
-    egg: `<path d="M20 52 C14 30 34 16 52 20 C70 14 90 30 84 50 C92 70 74 88 54 82 C36 92 12 78 20 52 Z" fill="#fff" ${INK}/>
-      <circle cx="52" cy="50" r="18" fill="#fff27a" ${INK}/>
-      <ellipse cx="46" cy="47" rx="2.2" ry="4" fill="#3d3566"/><ellipse cx="58" cy="47" rx="2.2" ry="4" fill="#3d3566"/>
-      <path d="M45 55 Q52 62 59 55" fill="none" ${INK}/>`,
-    lemon: `<circle cx="50" cy="50" r="42" fill="#fff27a" ${INK}/>
-      <circle cx="50" cy="50" r="33" fill="#ffe94d" stroke="#e6d43a" stroke-width="2"/>
-      <path d="M50 18 L50 82 M18 50 L82 50 M27 27 L73 73 M73 27 L27 73" stroke="#fffbd0" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="4" fill="#fffbd0"/>`,
-    donut: `<circle cx="50" cy="50" r="40" fill="#f2c48d" ${INK}/>
-      <path d="M50 15 C66 12 80 22 84 36 C89 50 81 58 84 66 C78 82 62 88 50 84 C36 90 22 82 18 68 C12 56 18 46 16 36 C22 22 36 15 50 15 Z" fill="#ffb3e3" ${INK}/>
-      <path d="M30 34 l5 3 M62 26 l4 4 M71 52 l-2 5 M36 67 l5 -2 M57 72 l4 2 M26 50 l1 5 M46 26 l5 -1" stroke="#6fe3c6" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M40 22 l-1 5 M74 40 l4 1 M66 64 l3 3 M24 60 l4 -2" stroke="#fff27a" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="11" fill="#fff" ${INK}/>`,
-    fish: `<path d="M72 50 L92 33 L88 50 L92 67 Z" fill="#c9b8ff" ${INK}/>
-      <path d="M12 50 C26 27 58 26 76 50 C58 74 26 73 12 50 Z" fill="#a9dcff" ${INK}/>
-      <path d="M46 39 Q53 50 46 61 M57 41 Q63 50 57 59" fill="none" stroke="#3d3566" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="28" cy="46" r="4" fill="#3d3566"/><circle cx="29.3" cy="44.7" r="1.3" fill="#fff"/>
-      <path d="M19 54 Q23 57 28 55" fill="none" stroke="#3d3566" stroke-width="2.5" stroke-linecap="round"/>`,
-    cherry: `<path d="M34 58 Q44 30 62 14 M64 62 Q61 36 62 14" fill="none" ${INK}/>
-      <path d="M62 14 C72 5 86 9 88 18 C78 24 68 22 62 14 Z" fill="#6fe3c6" ${INK}/>
-      <circle cx="34" cy="70" r="14" fill="#ff5f7e" ${INK}/><circle cx="64" cy="74" r="14" fill="#ff5f7e" ${INK}/>
-      <ellipse cx="29" cy="65" rx="3" ry="4.5" fill="#fff" opacity=".8"/><ellipse cx="59" cy="69" rx="3" ry="4.5" fill="#fff" opacity=".8"/>`
-  };
-  const sticker = (name, cls) =>
-    `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true" focusable="false">${FOOD[name]}</svg>`;
-
-  function foodDecor() {
-    const desk = $(".desktop");
-    if (desk) {
-      desk.insertAdjacentHTML("afterbegin",
-        ["cupcake", "strawberry", "egg", "lemon", "donut", "fish", "cherry"]
-          .map((f) => sticker(f, "food f-" + f)).join(""));
-    }
-    const h1 = $(".site-header h1 a");
-    if (h1) {
-      h1.insertAdjacentHTML("afterbegin", sticker("strawberry", "h1-food"));
-      h1.insertAdjacentHTML("beforeend", sticker("cupcake", "h1-food"));
-    }
-  }
-
-  const CAT_ICONS = {
-    "עיקריות": "🍲", "מנות עיקריות": "🍲", "קינוחים": "🧁", "עוגות": "🍰", "עוגיות": "🍪",
-    "סלטים": "🥗", "מרקים": "🥣", "מאפים": "🥐", "לחמים": "🍞", "תוספות": "🍚",
-    "ארוחת בוקר": "🍳", "דגים": "🐟", "פסטה": "🍝", "שתייה": "🥤", "משקאות": "🥤"
-  };
-  const catIcon = (cat) => CAT_ICONS[cat] || "🍴";
 
   function favButton(r) {
     const on = isFav(r.id);
     return `<button class="fav" type="button" data-fav="${esc(r.id)}" aria-pressed="${on}" aria-label="הוספה למועדפים" title="מועדפים">♥</button>`;
   }
+
+  const describe = (r) => r.description || r.ingredients.flatMap((g) => g.items).slice(0, 3).join(" · ");
 
   /* ---------- home page ---------- */
   function initHome() {
@@ -168,8 +150,8 @@
     const status = $("#status");
     search.value = params.get("q") || "";
 
-    const normalize = (s) => String(s).toLowerCase().replace(/[\u0591-\u05C7]/g, "");
-    const haystack = (r) => normalize([r.title, r.category, ...r.ingredients.flatMap((g) => g.items)].join(" "));
+    const normalize = (s) => String(s).toLowerCase().replace(/[֑-ׇ]/g, "");
+    const haystack = (r) => normalize([r.title, r.category, r.description || "", ...r.ingredients.flatMap((g) => g.items)].join(" "));
 
     function filtered() {
       const q = normalize(search.value.trim());
@@ -188,42 +170,48 @@
       history.replaceState(null, "", qs ? "?" + qs : location.pathname);
     }
 
-    const titleColors = ["", "mint", "sun"];
+    function dish(r, newestId) {
+      const time = r.totalMinutes ? `<span class="time">${r.totalMinutes} דק׳</span>` : "";
+      const badge = r.id === newestId ? '<span class="badge-new">חדש!</span>' : "";
+      return `<article class="dish">
+          <h4 class="t-3"><a href="${recipeUrl(r)}">${esc(r.title)}</a>${badge}</h4>
+          ${time}
+          <p>${esc(describe(r))}</p>
+          ${favButton(r)}
+        </article>`;
+    }
+
     function render() {
       renderMenu(active);
+      $("#tool-favs").setAttribute("aria-pressed", String(active === FAVS));
       const list = filtered();
       const newestId = recipes[0] && recipes[0].id;
       status.textContent = list.length === 1 ? "נמצא מתכון אחד" : list.length ? `נמצאו ${list.length} מתכונים` : "";
       if (!list.length) {
-        grid.innerHTML = `<div class="win empty" style="grid-column:1/-1"><div class="content">${
+        grid.innerHTML = `<div class="empty">${mascot("egg", "")}${
           active === FAVS && !favorites.size
             ? "עדיין אין מועדפים. לחצו על ♥ במתכון כדי לשמור אותו כאן."
             : "לא נמצאו מתכונים. נסו חיפוש אחר ☺"
-        }</div></div>`;
+        }</div>`;
         return;
       }
-      grid.innerHTML = list.map((r, i) => {
-        const style = i % 4 === 1 ? " checker" : i % 3 === 0 ? " stack" : "";
-        const time = r.totalMinutes ? ` · ⏱ ${r.totalMinutes} דק׳` : "";
-        return `<article class="win card${style}">
-          ${r.id === newestId ? '<div class="badge-new">חדש!</div>' : ""}
-          <div class="titlebar ${titleColors[i % 3]}"><span class="t">${catIcon(r.category)} ${esc(r.category)}</span><div class="ctl" aria-hidden="true"><span>✕</span></div></div>
-          <div class="content">
-            <h3><a href="${recipeUrl(r)}">${esc(r.title)}</a></h3>
-            <small>${esc(r.category)}${time}</small>
-            ${favButton(r)}
-          </div>
-        </article>`;
-      }).join("");
+      const order = categories().map(([c]) => c);
+      const groups = order.map((cat) => [cat, list.filter((r) => r.category === cat)]).filter(([, items]) => items.length);
+      grid.innerHTML = groups.map(([cat, items], i) => `
+        <section class="cat-sec${i % 2 === 0 ? " boxed" : ""}">
+          <h3 class="t-2">${mascot(MASCOT_NAMES[i % MASCOT_NAMES.length], "")}<span>${esc(cat)}</span></h3>
+          <div class="dishes">${items.map((r) => dish(r, newestId)).join("")}</div>
+        </section>`).join("");
     }
+
+    function update() { syncUrl(); render(); }
 
     $("#menu").addEventListener("click", (e) => {
       const a = e.target.closest("a[data-cat]");
       if (!a) return;
       e.preventDefault();
       active = a.dataset.cat;
-      syncUrl();
-      render();
+      update();
     });
     grid.addEventListener("click", (e) => {
       const b = e.target.closest("[data-fav]");
@@ -231,10 +219,12 @@
       b.setAttribute("aria-pressed", toggleFav(b.dataset.fav));
       if (active === FAVS) render();
     });
-    search.addEventListener("input", () => { syncUrl(); render(); });
+    search.addEventListener("input", update);
     $("#random").addEventListener("click", () => randomRecipe(filtered()));
+    $("#tool-favs").addEventListener("click", () => { active = active === FAVS ? ALL : FAVS; update(); });
+    $("#tool-clear").addEventListener("click", () => { search.value = ""; update(); search.focus(); });
+    $("#tool-all").addEventListener("click", () => { active = ALL; search.value = ""; update(); });
 
-    renderWebring(null);
     render();
   }
 
@@ -244,11 +234,16 @@
     const r = recipes.find((x) => x.id === id);
     const main = $("#recipe");
     renderMenu(r ? r.category : null);
-    renderWebring(r);
+    renderPrevNext(r);
+
+    const bar = () => `<div class="win-bar orange"><span class="pill-url" dir="ltr">${esc(location.host + location.pathname + location.search)}</span><span class="sq" aria-hidden="true"><i>–</i><i>□</i><i>○</i></span></div>`;
 
     if (!r) {
-      main.innerHTML = `<div class="titlebar"><span class="t" dir="ltr">error.exe</span><div class="ctl" aria-hidden="true"><span>✕</span></div></div>
-        <div class="content"><h2>אופס! המתכון לא נמצא</h2><p><a href="index.html">חזרה לכל המתכונים</a></p></div>`;
+      main.innerHTML = bar() + `
+        <div class="recipe-in not-found">${mascot("egg", "")}
+          <h1 class="t-1">אופס! המתכון לא נמצא</h1>
+          <p><a class="pill-btn mustard" href="index.html">חזרה לכל המתכונים</a></p>
+        </div>`;
       return;
     }
 
@@ -257,7 +252,7 @@
     const checked = new Set(store.get(checkKey, []));
     let n = 0;
     const ingredients = r.ingredients.map((g) => {
-      const head = g.title ? `<h5>${esc(g.title)}</h5>` : "";
+      const head = g.title ? `<h3 class="t-4">${esc(g.title)}</h3>` : "";
       const items = g.items.map((item) => {
         const key = n++;
         return `<li><label><input type="checkbox" data-i="${key}"${checked.has(key) ? " checked" : ""}> <span>${esc(item)}</span></label></li>`;
@@ -268,32 +263,34 @@
     const meta = [
       r.prepTime && `<span>⏱ הכנה: ${esc(r.prepTime)}</span>`,
       r.cookTime && `<span>🔥 בישול/אפייה: ${esc(r.cookTime)}</span>`,
-      `<a href="index.html?cat=${encodeURIComponent(r.category)}">${catIcon(r.category)} ${esc(r.category)}</a>`
+      `<a href="index.html?cat=${encodeURIComponent(r.category)}">🍽 ${esc(r.category)}</a>`
     ].filter(Boolean).join("");
 
     const fav = isFav(r.id);
-    main.innerHTML = `
-      <div class="titlebar"><span class="t" dir="ltr">${esc(r.id)}.txt</span><div class="ctl" aria-hidden="true"><span>_</span><span>□</span><span>✕</span></div></div>
-      <div class="content">
-        <h2>${esc(r.title)}</h2>
+    main.innerHTML = bar() + `
+      <div class="recipe-in">
+        <h1 class="t-1">${esc(r.title)}</h1>
         <div class="recipe-meta">${meta}</div>
         <div class="recipe-actions">
-          <button class="btn pink" id="fav" type="button" aria-pressed="${fav}">${fav ? "♥ במועדפים" : "♡ הוספה למועדפים"}</button>
-          <button class="btn mint" id="wake" type="button" aria-pressed="false">☀ מסך דולק</button>
-          <button class="btn sun" id="random" type="button">🎲 מתכון אקראי</button>
+          <button class="pill-btn orange" id="fav" type="button" aria-pressed="${fav}">${fav ? "♥ במועדפים" : "♡ הוספה למועדפים"}</button>
+          <button class="pill-btn sky" id="wake" type="button" aria-pressed="false">☀ מסך דולק</button>
+          <button class="pill-btn mustard" id="random" type="button">🎲 מתכון אקראי</button>
         </div>
         <div class="recipe-body">
-          <section class="panel">
-            <h4>🥕 מצרכים</h4>
-            ${ingredients}
-            <button class="btn reset" id="reset" type="button">↺ ניקוי סימונים</button>
+          <section class="panel ingredients">
+            <h2 class="t-2">מצרכים</h2>
+            <div class="ingredients-box">
+              ${ingredients}
+              <button class="pill-btn small reset" id="reset" type="button">↺ ניקוי סימונים</button>
+            </div>
           </section>
           <section class="panel steps">
-            <h4>🥄 אופן ההכנה</h4>
-            <ol>${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+            <h2 class="t-2">אופן ההכנה</h2>
+            <ol>${r.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>
           </section>
         </div>
         ${r.source && r.source.url ? `<div class="src">מקור: <a href="${esc(r.source.url)}" target="_blank" rel="noopener">${esc(r.source.label || "למתכון המקורי")} ↗</a></div>` : ""}
+        ${mascot("cupcake", "recipe-mascot")}
       </div>`;
 
     main.addEventListener("change", (e) => {
@@ -345,9 +342,8 @@
     });
   }
 
-  foodDecor();
-  renderMarquee();
-  cursorTrail();
+  decorate();
+  startClock();
   const page = document.body.dataset.page;
   if (page === "home") initHome();
   if (page === "recipe") initRecipe();

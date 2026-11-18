@@ -5,62 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ספר המתכונים של עדי</title>
 <meta name="description" content="המתכונים שאני באמת מכינה">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☺</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍅</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Rubik:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-page="home">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="smile" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="46" fill="#fff27a" stroke="#3d3566" stroke-width="3"/>
-    <ellipse cx="36" cy="38" rx="5" ry="10" fill="#3d3566"/>
-    <ellipse cx="64" cy="38" rx="5" ry="10" fill="#3d3566"/>
-    <path d="M24 58 Q50 86 76 58" fill="none" stroke="#3d3566" stroke-width="5" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="star4" viewBox="0 0 40 40"><path d="M20 1 C22 14 26 18 39 20 C26 22 22 26 20 39 C18 26 14 22 1 20 C14 18 18 14 20 1Z"/></symbol>
-</svg>
+<div class="page">
 
-<p class="page-title" dir="ltr">~ ADI_RECIPES.EXE ~</p>
-<div class="desktop">
-  <svg class="smiley s1" aria-hidden="true"><use href="#smile"/></svg>
-  <svg class="smiley s2" aria-hidden="true"><use href="#smile"/></svg>
-  <svg class="smiley s3" aria-hidden="true"><use href="#smile"/></svg>
-  <svg class="star t1" aria-hidden="true"><use href="#star4"/></svg>
-  <svg class="star t2" aria-hidden="true"><use href="#star4"/></svg>
-
-  <header class="win stack site-header">
-    <div class="titlebar"><span class="t" dir="ltr">adi_recipes.exe</span><div class="ctl" aria-hidden="true"><span>_</span><span>□</span><span>✕</span></div></div>
-    <div class="content">
-      <h1><a href="index.html">ספר המתכונים של עדי</a></h1>
-      <p>המתכונים שאני באמת מכינה ♥</p>
+  <header class="window site-header">
+    <div class="win-bar">
+      <span class="burger" aria-hidden="true"></span>
+      <span class="dots" aria-hidden="true"><i></i><i></i></span>
+    </div>
+    <div class="masthead">
+      <p class="corner tl" dir="ltr"><b>By Adi</b><br>© 2026 All Tasty Rights Reserved</p>
+      <div class="badge-box" dir="ltr" aria-hidden="true">Est.<br>2026</div>
+      <h1 class="brand"><a href="index.html"><span class="t1">ספר המתכונים</span><span class="t2">של עדי</span></a></h1>
       <nav class="menu" id="menu" aria-label="קטגוריות"></nav>
+      <p class="corner br">מגישים באהבה ★</p>
     </div>
   </header>
 
-  <div class="marquee" id="marquee" aria-hidden="true"><span></span></div>
-
-  <main>
-    <div class="win">
-      <div class="titlebar mint"><span class="t" dir="ltr">search.exe</span><div class="ctl" aria-hidden="true"><span>_</span><span>✕</span></div></div>
-      <div class="content toolbar">
-        <input type="search" id="search" placeholder="חיפוש לפי שם או מצרך..." aria-label="חיפוש מתכון">
-        <button class="btn pink" id="random" type="button">🎲 מתכון אקראי</button>
+  <section class="band-dark" aria-label="חיפוש">
+    <div class="window">
+      <div class="win-bar orange">
+        <span class="pill-url" dir="ltr">adishpo.github.io/my-first-website-task</span>
+        <span class="sq" aria-hidden="true"><i>–</i><i>□</i><i>○</i></span>
+      </div>
+      <div class="hero">
+        <div class="tools">
+          <button class="tool" id="tool-favs" type="button" title="המועדפים שלי" aria-label="המועדפים שלי">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>
+          </button>
+          <button class="tool" id="tool-clear" type="button" title="ניקוי החיפוש" aria-label="ניקוי החיפוש">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+          <button class="tool" id="tool-all" type="button" title="כל המתכונים" aria-label="כל המתכונים">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          </button>
+        </div>
+        <div class="hero-pic" id="hero-pic"></div>
+        <div class="hero-text">
+          <h2 class="t-1">מה מבשלים היום?</h2>
+          <p>מחפשים לפי שם או לפי מצרך שמחכה במקרר, בוחרים קטגוריה, או נותנים לקובייה להחליט. בלי לחץ, רק אוכל טוב.</p>
+          <div class="search-row">
+            <input type="search" id="search" placeholder="חיפוש לפי שם או מצרך..." aria-label="חיפוש מתכון">
+            <button class="pill-btn orange" id="random" type="button">🎲 מתכון אקראי</button>
+          </div>
+        </div>
+      </div>
+      <div class="win-foot">
+        <span class="burger" aria-hidden="true"></span>
+        <span class="dots" aria-hidden="true"><i></i><i></i></span>
+        <span class="clock" id="clock" dir="ltr"></span>
       </div>
     </div>
-    <p class="status" id="status" role="status"></p>
-    <div class="grid" id="grid"></div>
-  </main>
+  </section>
+
+  <section class="menu-sheet" aria-label="המתכונים">
+    <div class="checker" aria-hidden="true"></div>
+    <div class="menu-body">
+      <div class="menu-head">
+        <h2 class="t-1">התפריט</h2>
+        <p class="status" id="status" role="status"></p>
+      </div>
+      <div class="menu-cols" id="grid"></div>
+    </div>
+    <div class="checker" aria-hidden="true"></div>
+  </section>
 
   <footer class="site-footer">
-    <div class="buttons88" dir="ltr" aria-hidden="true">
-      <div class="b88 a">Made with<br>♥ HTML</div>
-      <div class="b88 b">YUMMY!</div>
-      <div class="b88 c">GitHub<br>Pages</div>
-      <div class="b88 d">Best viewed<br>hungry</div>
-    </div>
-    <div class="webring" id="webring"></div>
+    <p class="foot-note">ספר המתכונים של עדי · 2026</p>
   </footer>
 </div>
 

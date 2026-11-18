@@ -1,6 +1,8 @@
 /*
   Recipes data. To add a recipe, copy one object and edit it.
   - id: unique English slug, used in the URL (recipe.html?id=...)
+  - description: optional one-line blurb shown under the title in the menu
+    (if missing, the first ingredients are shown instead)
   - category: free text; tabs are generated automatically from all categories
   - added: YYYY-MM-DD, the newest recipe gets the "new" badge
   - ingredients: groups, each with an optional title and a list of items
@@ -9,6 +11,7 @@ window.RECIPES = [
   {
     id: "baked-chicken-patties",
     title: "קציצות עוף אפויות עם ירקות",
+    description: "פרגית טחונה עם קישוא, גזר ועשבי תיבול, מוברשות בסילאן ואפויות עד שהן זהובות",
     category: "עיקריות",
     prepTime: "15 דק׳",
     cookTime: "25–30 דק׳",
@@ -53,6 +56,7 @@ window.RECIPES = [
   {
     id: "baked-sea-bass-herbs",
     title: "פילה לברק צלוי עם טימין ובזיליקום",
+    description: "דג עדין ועסיסי בתנור, עם שמן זית, עשבי תיבול ונגיעה של לימון",
     category: "עיקריות",
     prepTime: "5 דק׳",
     cookTime: "10–14 דק׳",
@@ -85,6 +89,7 @@ window.RECIPES = [
   {
     id: "salmon-green-beans",
     title: "סלמון בתנור עם שעועית ירוקה ורוטב לימון ושמן זית",
+    description: "פילטי סלמון ושעועית ירוקה בתבנית אחת, עם רוטב לימון, שום ושמן זית",
     category: "עיקריות",
     prepTime: "15 דק׳",
     cookTime: "14–18 דק׳",
