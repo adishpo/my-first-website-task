@@ -3,85 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ספר המתכונים של עדי</title>
-<meta name="description" content="המתכונים שאני באמת מכינה">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍅</text></svg>">
+<title>מחברת המתכונים שלי</title>
+<meta name="theme-color" content="#efe5d0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫒</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Rubik:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-page="home">
-<div class="page">
 
-  <header class="window site-header">
-    <div class="win-bar">
-      <span class="burger" aria-hidden="true"></span>
-      <span class="dots" aria-hidden="true"><i></i><i></i></span>
-    </div>
-    <div class="masthead">
-      <p class="corner tl" dir="ltr"><b>By Adi</b><br>© 2026 All Tasty Rights Reserved</p>
-      <div class="badge-box" dir="ltr" aria-hidden="true">Est.<br>2026</div>
-      <h1 class="brand"><a href="index.html"><span class="t1">ספר המתכונים</span><span class="t2">של עדי</span></a></h1>
-      <nav class="menu" id="menu" aria-label="קטגוריות"></nav>
-      <p class="corner br">מגישים באהבה ★</p>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="index.html" aria-label="מחברת המתכונים שלי – לעמוד הבית"><span class="logo-name">מחברת המתכונים שלי</span></a>
+    <span class="h-rule arrow" aria-hidden="true"></span>
+    <nav class="main-nav" id="main-nav" aria-label="ניווט ראשי">
+      <a href="index.html" data-nav="home">הבית</a>
+      <a href="index.html#recipes" data-nav="recipes">המתכונים</a>
+      <a href="index.html?cat=favorites#recipes" data-nav="favorites" data-cat="favorites">מועדפים</a>
+      <button class="nav-random" type="button" data-random>מתכון אקראי ←</button>
+    </nav>
+    <span class="h-rule" aria-hidden="true"></span>
+    <button class="btn btn-ghost header-cta" type="button" data-random>מתכון אקראי</button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+      <span class="bars" aria-hidden="true"></span><span class="nav-toggle-label">תפריט</span>
+    </button>
+  </div>
+</header>
 
-  <section class="band-dark" aria-label="חיפוש">
-    <div class="window">
-      <div class="win-bar orange">
-        <span class="pill-url" dir="ltr">adishpo.github.io/my-first-website-task</span>
-        <span class="sq" aria-hidden="true"><i>–</i><i>□</i><i>○</i></span>
-      </div>
-      <div class="hero">
-        <div class="tools">
-          <button class="tool" id="tool-favs" type="button" title="המועדפים שלי" aria-label="המועדפים שלי">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>
-          </button>
-          <button class="tool" id="tool-clear" type="button" title="ניקוי החיפוש" aria-label="ניקוי החיפוש">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-          </button>
-          <button class="tool" id="tool-all" type="button" title="כל המתכונים" aria-label="כל המתכונים">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
-          </button>
-        </div>
-        <div class="hero-pic" id="hero-pic"></div>
-        <div class="hero-text">
-          <h2 class="t-1">מה מבשלים היום?</h2>
-          <p>מחפשים לפי שם או לפי מצרך שמחכה במקרר, בוחרים קטגוריה, או נותנים לקובייה להחליט. בלי לחץ, רק אוכל טוב.</p>
-          <div class="search-row">
-            <input type="search" id="search" placeholder="חיפוש לפי שם או מצרך..." aria-label="חיפוש מתכון">
-            <button class="pill-btn orange" id="random" type="button">🎲 מתכון אקראי</button>
-          </div>
-        </div>
-      </div>
-      <div class="win-foot">
-        <span class="burger" aria-hidden="true"></span>
-        <span class="dots" aria-hidden="true"><i></i><i></i></span>
-        <span class="clock" id="clock" dir="ltr"></span>
+<main>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">מחברת<br>המתכונים<br>שלי</h1>
+      <span class="short-rule" aria-hidden="true"></span>
+      <div class="cta-row">
+        <a class="btn" href="#recipes">לכל המתכונים ←</a>
+        <a class="link-arrow" href="index.html?cat=favorites#recipes" data-cat="favorites">המועדפים שלי ←</a>
       </div>
     </div>
+    <div class="hero-art"><div data-art="hero"></div></div>
   </section>
 
-  <section class="menu-sheet" aria-label="המתכונים">
-    <div class="checker" aria-hidden="true"></div>
-    <div class="menu-body">
-      <div class="menu-head">
-        <h2 class="t-1">התפריט</h2>
+  <section class="band recipes" id="recipes" aria-label="המתכונים">
+    <div class="wrap recipes-in">
+      <div class="recipes-intro">
+        <label class="search">
+          <span class="visually-hidden">חיפוש מתכון</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 L21 21"/></svg>
+          <input type="search" id="search" placeholder="שם מתכון או מצרך..." autocomplete="off">
+        </label>
+        <nav class="tabs" id="tabs" aria-label="קטגוריות"></nav>
         <p class="status" id="status" role="status"></p>
       </div>
-      <div class="menu-cols" id="grid"></div>
+      <div class="cards" id="grid"></div>
     </div>
-    <div class="checker" aria-hidden="true"></div>
   </section>
+</main>
 
-  <footer class="site-footer">
-    <p class="foot-note">ספר המתכונים של עדי · 2026</p>
-  </footer>
-</div>
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <a class="logo" href="index.html"><span class="logo-name">מחברת המתכונים שלי</span></a>
+  </div>
+</footer>
 
 <script src="data/recipes.js"></script>
+<script src="assets/art.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
