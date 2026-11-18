@@ -130,7 +130,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-within {
 .art .mid { stroke-width: 7; }
 .art .pour { stroke-width: 4; }
 .art .bg { fill: var(--art-bg); stroke: none; }
-.art-hero { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 90%, transparent); mask-image: linear-gradient(to bottom, #000 90%, transparent); }
+.art .w { stroke-width: 3.2; }
+.art-hero { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 96%, transparent); mask-image: linear-gradient(to bottom, #000 96%, transparent); }
 .art .sun { fill: currentColor; opacity: .07; stroke: none; }
 .art .label { font: 700 26px var(--sans); fill: currentColor; text-anchor: middle; }
 

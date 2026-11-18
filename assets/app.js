@@ -2,7 +2,11 @@
   "use strict";
 
   const ART = window.ART;
-  const recipes = (window.RECIPES || []).slice().sort((a, b) => (b.added || "").localeCompare(a.added || ""));
+  // newest first; recipes added on the same day keep "later in the file = newer"
+  const recipes = (window.RECIPES || [])
+    .map((r, i) => [r, i])
+    .sort(([a, ia], [b, ib]) => (b.added || "").localeCompare(a.added || "") || ib - ia)
+    .map(([r]) => r);
   const FAV_KEY = "adi-recipes:favorites";
   const ALL = "all";
   const FAVS = "favorites";

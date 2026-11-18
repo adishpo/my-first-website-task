@@ -29,69 +29,75 @@ window.ART = (function () {
       <path class="t" d="M3 0 H46 M18 0 L26 -6 M30 0 L38 -5 M18 0 L26 6 M30 0 L38 5"/>
     </g>`;
 
-  /* ---------- hero: a set table ---------- */
+  /* ---------- hero: a pot of soup with vegetables, drawn freehand ---------- */
   function hero() {
-    const olives = [[130, 393, 1], [150, 389, 0], [170, 391, 1], [190, 394, 0], [205, 399, 1], [140, 401, 0], [160, 402, 1], [180, 403, 0], [122, 402, 1], [198, 405, 0]]
-      .map(([x, y, f]) => `<ellipse class="${f ? "f" : "p"}" cx="${x}" cy="${y}" rx="9" ry="7" transform="rotate(-20 ${x} ${y})"/>${f ? "" : `<circle class="f" cx="${x + 1}" cy="${y}" r="1.8"/>`}`)
-      .join("");
+    /* a round, slightly lopsided tomato centred at (x, y) with radius r */
+    const tomato = (x, y, r) => `
+      <path class="p w" d="M${x - r} ${y + 2} C${x - r - 2} ${y - r * .7} ${x - r * .45} ${y - r - 2} ${x + 2} ${y - r}
+        C${x + r * .7} ${y - r + 1} ${x + r + 2} ${y - r * .5} ${x + r} ${y + 3}
+        C${x + r - 2} ${y + r * .75} ${x + r * .35} ${y + r + 2} ${x - 3} ${y + r}
+        C${x - r * .7} ${y + r - 2} ${x - r + 1} ${y + r * .55} ${x - r} ${y + 2} Z"/>
+      <path class="t" d="M${x - r * .62} ${y - r * .2} C${x - r * .55} ${y - r * .5} ${x - r * .3} ${y - r * .66} ${x - r * .05} ${y - r * .7}"/>
+      <path class="t" d="M${x + r * .55} ${y + r * .2} C${x + r * .5} ${y + r * .45} ${x + r * .35} ${y + r * .6} ${x + r * .15} ${y + r * .7}"/>
+      <path class="f" d="M${x} ${y - r + 3} C${x - 7} ${y - r - 2} ${x - 14} ${y - r + 1} ${x - 19} ${y - r - 3}
+        C${x - 12} ${y - r - 6} ${x - 6} ${y - r - 5} ${x - 1} ${y - r - 2} C${x - 3} ${y - r - 9} ${x} ${y - r - 15} ${x + 5} ${y - r - 17}
+        C${x + 5} ${y - r - 11} ${x + 4} ${y - r - 6} ${x + 2} ${y - r - 2} C${x + 8} ${y - r - 6} ${x + 15} ${y - r - 6} ${x + 21} ${y - r - 3}
+        C${x + 15} ${y - r} ${x + 8} ${y - r + 1} ${x} ${y - r + 3} Z"/>`;
 
-    return svg("0 0 560 520", `
-      <!-- chair back behind the table -->
-      <path class="s thick" d="M160 300 V160 C160 70 300 70 300 160 V300"/>
-      <path class="s mid" d="M192 300 V172 C192 118 268 118 268 172 V300"/>
+    /* a rounded basil leaf from (x, y), pointing along `rot` */
+    const basil = (x, y, rot, sc = 1) => `
+      <g transform="translate(${x} ${y}) rotate(${rot}) scale(${sc})">
+        <path class="p" d="M0 0 C6 -14 24 -21 40 -14 C50 -9 54 -2 56 1 C48 9 30 15 14 11 C6 9 2 5 0 0 Z"/>
+        <path class="t" d="M2 0 C18 -3 36 -3 52 0 M16 -2 L22 -10 M28 -2 L34 -11 M16 -1 L21 7 M30 -1 L35 8"/>
+      </g>`;
 
-      <!-- table top and planks -->
-      <path class="bg" d="M-10 302 L570 178 L570 530 L-10 530 Z"/>
-      <path class="s" d="M-10 302 L570 178"/>
-      <path class="t" d="M0 300 L110 520 M80 283 L198 520 M160 266 L287 520 M240 249 L375 520 M320 231 L464 520 M400 214 L553 520 M480 197 L640 520"/>
-      <path class="t" d="M40 330 q8 -3 16 1 M120 360 q10 -4 18 0 M300 300 q9 -4 17 0 M455 262 q10 -4 18 0 M500 300 q8 -3 15 1 M220 470 q9 -3 16 1"/>
+    return svg("0 110 560 400", `
+      <!-- table line and a little shading under it -->
+      <path class="s" d="M14 456 C90 451 170 458 250 454 C330 450 420 457 548 452"/>
+      <path class="t" d="M30 470 l18 -6 M62 472 l18 -6 M440 470 l18 -6 M476 471 l18 -6 M510 469 l16 -5"/>
 
-      <!-- water bottle -->
-      <path class="p" d="M30 180 Q30 160 45 150 L52 140 V112 H68 V140 L75 150 Q90 160 90 180 V395 Q60 402 30 395 Z"/>
-      <rect class="f" x="49" y="98" width="22" height="15" rx="2"/>
-      <path class="s" d="M30 230 H90 M30 350 H90"/>
-      <path class="t" d="M80 175 V220 M80 360 V385"/>
-      <text class="label" x="60" y="268">מ</text>
-      <text class="label" x="60" y="300">י</text>
-      <text class="label" x="60" y="334">ם</text>
+      <!-- steam -->
+      <path class="s" d="M206 262 C192 242 220 230 208 208 C198 190 216 178 211 160"/>
+      <path class="s" d="M256 252 C240 226 272 214 256 186 C246 168 266 154 260 132"/>
+      <path class="s" d="M306 262 C294 244 318 232 306 210 C300 198 308 190 306 180"/>
+      <path class="t" d="M176 230 l-6 -6 M336 222 l7 -5 M232 150 l-2 -8 M290 168 l4 -7"/>
 
-      <!-- olive bowl -->
-      <ellipse class="p" cx="165" cy="452" rx="30" ry="6"/>
-      <path class="p" d="M107 400 C110 440 135 452 165 452 C195 452 220 440 223 400 Z"/>
-      <path class="t" d="M120 420 q8 14 22 22 M134 414 q6 16 18 26 M200 416 q-4 12 -14 22"/>
-      <ellipse class="p" cx="165" cy="400" rx="58" ry="14"/>
-      ${olives}
+      <!-- wooden spoon resting in the pot -->
+      <path class="p" d="M417 136 C421 129 429 133 431 141 C405 194 380 244 352 302 L338 298 C366 240 392 188 417 136 Z"/>
+      <path class="t" d="M422 146 C404 186 386 222 368 262 M426 150 C414 176 402 200 392 222"/>
 
-      <!-- first glass -->
-      ${glass(265, 240)}
+      <!-- the pot -->
+      <path class="s w" d="M130 328 C106 320 98 344 126 349 M376 328 C400 320 408 344 380 349"/>
+      <path class="p w" d="M131 300 C127 356 136 416 168 440 C206 460 302 461 338 441 C369 418 378 360 375 300 Z"/>
+      <path class="s" d="M134 334 C196 348 310 348 373 334"/>
+      <path class="t" d="M352 344 C354 372 350 400 338 424 M338 348 C340 376 336 402 326 422 M162 350 C160 380 166 404 176 424"/>
+      <path class="t" d="M196 446 l8 4 M300 448 l-8 4"/>
+      <path class="p w" d="M119 299 C146 279 352 277 388 296 C392 307 358 318 252 319 C152 319 115 311 119 299 Z"/>
+      <path class="f" d="M137 302 C170 291 336 290 370 300 C352 310 162 312 137 302 Z"/>
+      <path class="p" d="M168 300 c4 -3 10 -2 11 1 c-3 3 -9 3 -11 -1 Z M214 297 c4 -3 9 -2 10 1 c-3 3 -8 3 -10 -1 Z M290 298 c4 -3 10 -2 11 1 c-3 3 -9 3 -11 -1 Z M326 302 c3 -2 8 -1 9 1 c-3 2 -7 2 -9 -1 Z"/>
+      <path class="s" d="M116 302 C113 293 121 288 131 286"/>
 
-      <!-- plate and knife -->
-      <ellipse class="p" cx="255" cy="480" rx="112" ry="36"/>
-      <ellipse class="t" cx="255" cy="478" rx="80" ry="23"/>
-      ${leaf(232, 476, -20, 0.55)}${leaf(250, 480, 200, 0.45)}
-      <path class="p" d="M372 506 L454 466 C462 462 468 468 458 475 L378 512 Z"/>
-      <path class="t" d="M392 496 L446 470"/>
+      <!-- garlic -->
+      <path class="p w" d="M80 382 C62 390 44 412 50 440 C60 455 104 454 113 441 C121 414 110 391 92 382 C88 373 90 364 86 352 C82 363 84 373 80 382 Z"/>
+      <path class="t" d="M85 386 C73 402 70 428 79 450 M89 386 C101 402 103 428 96 450 M70 398 C62 412 60 430 64 446"/>
+      <path class="t" d="M68 452 l-5 6 M80 454 l-1 7 M94 453 l5 6"/>
 
-      <!-- second glass, being filled -->
-      ${glass(395, 290)}
-      <path class="s pour" d="M404 188 C401 230 397 275 395 322"/>
-
-      <!-- pouring bottle -->
-      <g transform="translate(445 135) rotate(38)">
-        <path class="p" d="M-28 -150 H28 V-20 C28 0 12 6 10 18 V60 H-10 V18 C-12 6 -28 0 -28 -20 Z"/>
-        <path class="f" d="M-10 22 H10 V60 H-10 Z"/>
-        <rect class="p" x="-12" y="58" width="24" height="9" rx="2"/>
-        <rect class="p" x="-28" y="-108" width="56" height="62"/>
-        <rect class="t" x="-22" y="-102" width="44" height="50"/>
-        <path class="t" d="M-12 -86 H12 M-8 -76 H8 M-14 -66 H14"/>
-        <path class="t" d="M18 -140 V-118 M18 -36 V-24"/>
+      <!-- half a lemon -->
+      <g transform="translate(390 440) scale(1.35) translate(-392 -440)">
+      <path class="p w" d="M360 440 C360 460 424 461 425 440 Z"/>
+      <path class="p w" d="M360 440 C362 428 422 426 425 440 C423 451 362 452 360 440 Z"/>
+      <path class="t" d="M368 440 C371 432 414 431 417 440 C414 447 371 448 368 440 Z"/>
+      <path class="t" d="M392 440 L374 437 M392 440 L384 432 M392 440 L402 432 M392 440 L412 437 M392 440 L410 445 M392 440 L392 447 M392 440 L374 444"/>
       </g>
-      <path class="t" d="M470 205 q10 6 12 18 M486 196 q12 6 14 20"/>
 
-      <!-- tumbler -->
-      <path class="p" d="M467 370 L474 455 Q505 463 536 455 L543 370 Z"/>
-      <path class="t" d="M478 448 V424 a7 7 0 0 1 14 0 V448 M498 450 V424 a7 7 0 0 1 14 0 V450 M518 448 V424 a7 7 0 0 1 14 0 V448"/>
-      <ellipse class="s" cx="505" cy="370" rx="38" ry="8"/>
+      <!-- tomatoes on the vine -->
+      <path class="s" d="M470 380 C474 356 498 346 518 360 C526 366 528 380 525 398"/>
+      ${tomato(472, 420, 33)}
+      ${tomato(524, 432, 25)}
+
+      <!-- basil sprig in front -->
+      <path class="s" d="M140 488 C200 478 262 482 330 470"/>
+      ${basil(170, 484, -38, 1.05)}${basil(208, 481, 28, 1)}${basil(246, 480, -30, .95)}${basil(282, 477, 32, .9)}${basil(316, 472, -18, .85)}
     `, "art-hero");
   }
 
@@ -136,6 +142,33 @@ window.ART = (function () {
       </g>
       ${leaf(96, 80, -40, 0.3, "f")}`,
 
+    muffin: `
+      <path class="s" d="M14 136 C60 133 120 137 190 134"/>
+      <path class="p w" d="M64 84 L136 84 L126 133 C108 137 92 137 74 133 Z"/>
+      <path class="t" d="M76 88 L82 132 M88 88 L92 134 M100 88 L100 135 M112 88 L108 134 M124 88 L118 132"/>
+      <path class="p w" d="M58 86 C50 68 64 50 82 52 C88 38 112 36 120 50 C138 46 150 66 142 86 C124 94 76 94 58 86 Z"/>
+      <path class="t" d="M74 66 l4 3 M92 58 l5 1 M110 62 l3 4 M126 70 l4 -2 M84 78 l5 0 M104 76 l4 2 M68 76 l2 4 M132 80 l3 -3"/>
+      <path class="p" d="M90 46 C92 38 108 36 112 44 C108 50 94 51 90 46 Z"/>
+      <path class="t" d="M97 44 l3 2 M104 43 l2 3"/>
+      <path class="p w" d="M146 128 C166 126 182 110 186 86 C187 81 192 81 193 87 C193 116 172 136 146 136 C139 135 139 129 146 128 Z"/>
+      <path class="t" d="M152 131 C170 128 184 114 189 94"/>
+      <path class="f" d="M186 86 l1 -8 l5 1 l-1 8 Z"/>
+      <ellipse class="p" cx="30" cy="128" rx="7" ry="4" transform="rotate(-20 30 128)"/>
+      <ellipse class="p" cx="44" cy="131" rx="6" ry="3.5" transform="rotate(15 44 131)"/>
+      <ellipse class="p" cx="36" cy="120" rx="6" ry="3.5" transform="rotate(40 36 120)"/>`,
+
+    cookies: `
+      <path class="s" d="M14 136 C60 133 120 137 190 134"/>
+      <path class="p w" d="M48 120 C46 108 70 100 100 100 C130 100 154 106 152 120 C152 132 126 136 100 136 C72 136 48 132 48 120 Z"/>
+      <path class="p w" d="M54 102 C52 90 74 82 100 82 C128 82 148 88 146 102 C146 114 124 118 100 118 C76 118 54 114 54 102 Z"/>
+      <path class="p w" d="M60 80 C56 64 74 52 98 52 C126 52 144 62 142 78 C142 92 122 98 100 98 C78 98 62 94 60 80 Z"/>
+      <path class="f" d="M80 64 l7 -2 l2 6 l-7 2 Z M108 60 l6 1 l-1 6 l-6 -1 Z M124 74 l6 -2 l2 6 l-6 2 Z M92 80 l6 0 l0 6 l-6 0 Z M72 84 l5 -2 l2 5 l-5 2 Z"/>
+      <path class="f" d="M74 108 l5 -1 l1 5 l-5 1 Z M128 108 l5 0 l0 5 l-5 0 Z M68 126 l5 -1 l1 5 l-5 1 Z M118 128 l5 -1 l1 5 l-5 1 Z"/>
+      <path class="t" d="M68 70 c4 -3 8 -3 12 0 M112 86 c3 -2 7 -2 10 0 M100 66 c2 -2 5 -2 7 0"/>
+      <path class="p w" d="M158 116 C158 104 176 100 186 108 C182 114 182 122 188 128 C178 136 158 130 158 116 Z"/>
+      <path class="f" d="M166 112 l4 -1 l1 4 l-4 1 Z M170 124 l4 0 l0 4 l-4 0 Z"/>
+      <path class="f" d="M30 130 l5 -2 l2 5 l-5 2 Z M40 124 l4 -1 l1 4 l-4 1 Z"/>`,
+
     wine: `
       <path class="p" d="M58 140 V64 C58 52 68 46 70 38 V12 H82 V38 C84 46 94 52 94 64 V140 Z"/>
       <rect class="f" x="68" y="6" width="16" height="10" rx="2"/>
@@ -149,6 +182,8 @@ window.ART = (function () {
     const text = (recipe.title || "") + " " + (recipe.description || "");
     if (/דג|סלמון|לברק|דניס|טונה|בורי/.test(text)) return "fish";
     if (/קציצ|עוף|בשר|פרגית|שניצל|כבד/.test(text)) return "pan";
+    if (/עוגיו|עוגיה|קוקיז/.test(text)) return "cookies";
+    if (/מאפינ|עוג|בננה|מאפה|קאפקייק/.test(text) || recipe.category === "מאפים") return "muffin";
     return "pasta";
   }
 
