@@ -115,25 +115,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-within {
 }
 .link-arrow:hover { background-size: 100% 1px; }
 
-.frame { border: 1px solid var(--line-strong); }
-
 /* ---------- illustrations ---------- */
 
 .art { width: 100%; height: auto; overflow: visible; color: var(--green); --art-bg: var(--paper); }
 .art .s, .art .p, .art .t, .art .f { stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
 .art .s { fill: none; stroke-width: 2.4; }
 .art .p { fill: var(--art-bg); stroke-width: 2.4; }
-.art .p.light { fill: var(--paper-3); }
 .art .f { fill: currentColor; stroke-width: 1.4; }
 .art .t { fill: none; stroke-width: 1.3; }
-.art .thick { stroke-width: 18; }
-.art .mid { stroke-width: 7; }
-.art .pour { stroke-width: 4; }
-.art .bg { fill: var(--art-bg); stroke: none; }
 .art .w { stroke-width: 3.2; }
 .art-hero { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 96%, transparent); mask-image: linear-gradient(to bottom, #000 96%, transparent); }
-.art .sun { fill: currentColor; opacity: .07; stroke: none; }
-.art .label { font: 700 26px var(--sans); fill: currentColor; text-anchor: middle; }
 
 /* ---------- header ---------- */
 

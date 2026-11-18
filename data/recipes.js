@@ -5,6 +5,7 @@
     (if missing, the first ingredients are shown instead)
   - category: free text; tabs are generated automatically from all categories
   - added: YYYY-MM-DD, the newest recipe gets the "new" badge
+    (on the same day, the one later in this file counts as newer)
   - ingredients: groups, each with an optional title and a list of items
 */
 window.RECIPES = [

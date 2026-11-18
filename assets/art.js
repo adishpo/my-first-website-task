@@ -2,7 +2,7 @@
   Line-art illustrations, drawn as inline SVG.
   Classes (styled in style.css):
     s = outline only, p = outline filled with paper, f = solid ink,
-    t = thin detail line, thick / mid = heavy strokes.
+    t = thin detail line, w = heavier outline.
   Colour comes from `currentColor`, so each illustration takes the text colour of its container.
 */
 window.ART = (function () {
