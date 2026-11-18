@@ -147,7 +147,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-within {
 .header-in { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); min-height: var(--header-h); }
 
 .logo { display: inline-flex; flex-direction: column; line-height: 1; color: var(--muted); text-decoration: none; flex-shrink: 0; }
-.logo-name { font-family: var(--serif); font-size: 1.55rem; font-weight: 500; color: var(--ink); letter-spacing: .02em; }
+.logo-name { font-family: var(--script); font-size: 2.1rem; font-weight: 700; color: var(--ink); letter-spacing: .02em; }
 
 .h-rule { position: relative; flex: 1; min-width: 20px; height: 1px; background: var(--line-strong); }
 .h-rule.arrow::after {
@@ -189,7 +189,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-within {
   padding-block: clamp(36px, 6vw, 80px) clamp(40px, 6vw, 72px);
 }
 
-.hero h1 { font-size: clamp(3.1rem, 7.4vw, 6.6rem); line-height: .96; letter-spacing: -.01em; }
+.hero h1 { font-family: var(--script); font-weight: 700; font-size: clamp(4rem, 9.6vw, 8.6rem); line-height: .92; }
 
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem 1.8rem; margin-top: 2.1rem; }
 
@@ -472,7 +472,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-within {
 }
 
 @media (max-width: 640px) {
-  .hero h1 { font-size: clamp(2.9rem, 14vw, 4rem); }
+  .hero h1 { font-size: clamp(3.8rem, 19vw, 5.4rem); }
   .cards { grid-template-columns: 1fr; gap: 14px; }
   .card {
     display: grid;
